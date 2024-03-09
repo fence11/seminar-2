@@ -13,7 +13,7 @@ typedef struct
 void search_track(Track *track, int count)
 {
     char search_input[15];
-    printf("\nEnter track composer to search: "); // search by composer . . . etc
+    printf("\nsearch by composer: ");
     scanf("%s", search_input);
     getchar();
 
@@ -21,12 +21,12 @@ void search_track(Track *track, int count)
     {
         if (strcmp(track[i].composer_name, search_input) == 0)
         {
-            printf("\nFirst element found at position %d\n\n", i);
-            printf("Name: %s\n", track[i].track_name);
-            printf("Composer: %s\n", track[i].composer_name);
-            printf("Media Type: %s\n", track[i].track_media_type);
-            printf("Album: %s\n", track[i].album);
-            printf("Duration (seconds): %d\n", track[i].track_duration_seconds);
+            printf("\nfirst element at position %d\n\n", i);
+            printf("track name: %s\n", track[i].track_name);
+            printf("composer: %s\n", track[i].composer_name);
+            printf("media type: %s\n", track[i].track_media_type);
+            printf("album: %s\n", track[i].album);
+            printf("duration (seconds): %d\n", track[i].track_duration_seconds);
             break;
         }
     }
@@ -38,27 +38,27 @@ int main()
 
     for (int i = 0; i < 3; i++)
     {
-        printf("Enter details for Track %d:\n", i + 1);
-        printf("Track name: ");
+        printf("input track %d:\n", i + 1);
+        printf("track name: ");
         scanf("%s", track[i].track_name);
-        printf("Composer: ");
+        printf("composer: ");
         scanf("%s", track[i].composer_name);
-        printf("Album: ");
+        printf("album: ");
         scanf("%s", track[i].album);
-        printf("Media type (max 5 chars): ");
+        printf("media type (max 5 chars): ");
         scanf("%s", track[i].track_media_type);
-        printf("Duration (seconds): ");
+        printf("duration (seconds): ");
         scanf("%d", &track[i].track_duration_seconds);
     }
 
     for (int i = 0; i < 3; i++)
     {
         printf("\nTRACK %d\n", i + 1);
-        printf("Name: %s\n", track[i].track_name);
-        printf("Composer: %s\n", track[i].composer_name);
-        printf("Media type: %s\n", track[i].track_media_type);
-        printf("Album: %s\n", track[i].album);
-        printf("Duration: %d seconds\n", track[i].track_duration_seconds);
+        printf("track name: %s\n", track[i].track_name);
+        printf("composer: %s\n", track[i].composer_name);
+        printf("media type: %s\n", track[i].track_media_type);
+        printf("album: %s\n", track[i].album);
+        printf("duration: %d seconds\n", track[i].track_duration_seconds);
     }
 
     search_track(track, 3);

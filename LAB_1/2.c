@@ -19,11 +19,11 @@ void print_tracks(Track *track, int count)
     for (int i = 0; i < count; i++)
     {
         printf("\nTrack %d:\n", i + 1);
-        printf("Name: %s\n", track[i].track_name);
-        printf("Composer: %s\n", track[i].composer_name);
-        printf("Media Type: %s\n", track[i].track_media_type);
-        printf("Album: %s\n", track[i].album);
-        printf("Duration (seconds): %d\n", track[i].track_duration_seconds);
+        printf("track name: %s\n", track[i].track_name);
+        printf("composer: %s\n", track[i].composer_name);
+        printf("media type: %s\n", track[i].track_media_type);
+        printf("album: %s\n", track[i].album);
+        printf("duration (seconds): %d\n", track[i].track_duration_seconds);
     }
 }
 
@@ -56,24 +56,17 @@ int compare(const void *a, const void *b)
     return (trackB->track_duration_seconds - trackA->track_duration_seconds);
 }
 
-Track *add_track_at_beginning(Track *track, int *count, Track new_track)
+void add_track_at_beginning(Track *tracks, int *count, Track new_track)
 {
-    *count += 1;
-    track = realloc(track, (*count) * sizeof(Track));
-    for (int i = *count - 1; i > 0; i--)
-    {
-        track[i] = track[i - 1];
-    }
-    track[0] = new_track;
-    return track;
+    memmove(&tracks[1], &tracks[0], (*count) * sizeof(Track));
+    tracks[0] = new_track;
+    (*count)++;
 }
 
-Track *add_track_at_end(Track *track, int *count, Track new_track)
+void add_track_at_end(Track *tracks, int *count, Track new_track)
 {
-    *count += 1;
-    track = realloc(track, (*count) * sizeof(Track));
-    track[*count - 1] = new_track;
-    return track;
+    tracks[*count] = new_track;
+    (*count)++;
 }
 
 int main()
@@ -132,39 +125,41 @@ int main()
         case 4:
         {
             Track new_track;
-            printf("Enter details of the track to add at the beginning:\n");
-            printf("Name: ");
+            printf("input track at the beginning:\n");
+            printf("track name: ");
             scanf("%s", new_track.track_name);
-            printf("Composer: ");
+            printf("composer: ");
             scanf("%s", new_track.composer_name);
-            printf("Media Type: ");
+            printf("media type: ");
             scanf("%s", new_track.track_media_type);
-            printf("Album: ");
+            printf("album: ");
             scanf("%s", new_track.album);
-            printf("Duration (seconds): ");
+            printf("duration (seconds): ");
             scanf("%d", &new_track.track_duration_seconds);
 
-            track = add_track_at_beginning(track, &track_count, new_track);
-            printf("Track added at the beginning successfully.\n");
+            add_track_at_beginning(track, &track_count, new_track);
+
+            printf("Success\n");
             break;
         }
         case 5:
         {
             Track new_track;
-            printf("Enter details of the track to add at the end:\n");
-            printf("Name: ");
+            printf("input track at the end:\n");
+            printf("track name: ");
             scanf("%s", new_track.track_name);
-            printf("Composer: ");
+            printf("composer: ");
             scanf("%s", new_track.composer_name);
-            printf("Media Type: ");
+            printf("media type: ");
             scanf("%s", new_track.track_media_type);
-            printf("Album: ");
+            printf("album: ");
             scanf("%s", new_track.album);
-            printf("Duration (seconds): ");
+            printf("duration (seconds): ");
             scanf("%d", &new_track.track_duration_seconds);
 
-            track = add_track_at_end(track, &track_count, new_track);
-            printf("Track added at the end successfully.\n");
+            add_track_at_end(track, &track_count, new_track);
+
+            printf("Success\n");
             break;
         }
 
